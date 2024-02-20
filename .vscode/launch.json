@@ -1,20 +1,20 @@
 {
   "version": "0.2.0",
-  "configurations": [
+  "compounds": [
     {
-        "name": "Pinned File",
-        "type": "godot",
-        "request": "launch",
-        "scene": "pinned",
-        "project": "${workspaceFolder}",
-    },
+      "name": "2 Scenes",
+      "configurations": ["Default Scene", "Default Scene"],
+      "stopAll": true,
+    }
+  ],
+  "configurations": [
     {
       "name": "Default Scene",
       "type": "godot",
       "request": "launch",
       "project": "${workspaceFolder}",
-      "port": 6007,
       "address": "127.0.0.1",
+      "suppressMultipleSessionWarning": true,
     },
   ]
 }

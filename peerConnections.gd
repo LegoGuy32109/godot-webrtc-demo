@@ -86,14 +86,14 @@ func createPeer() -> void:
 		peer.session_description_created.connect(
 			func(type, sdp):
 				print(
-					"\nsession description created\nTYPE\n%s\nSDP\n%s"% [type, sdp.replace("\n", "")]
+					"\nsession description created\nTYPE\n%s\nSDP\n%s" % [type, sdp.replace("\n", "")]
 				)
 				selfConnectionInfo.session_description={"type": type, "sdp": sdp}
 		)
 		peer.ice_candidate_created.connect(
 			func(media, index: int, iceName):
 				print(
-					"\nice candidate created\nMEDIA\n%s\nINDEX\n%s\nNAME\n%s"% [media, index, iceName]
+					"\nice candidate created\nMEDIA\n%s\nINDEX\n%s\nNAME\n%s" % [media, index, iceName]
 				)
 				selfConnectionInfo.ice_candidates.append({
 					"media": media,
@@ -102,7 +102,38 @@ func createPeer() -> void:
 				})
 		)
 
-	peer.initialize()
+	""" Valid Configuration:
+	{
+		"iceServers": [
+			{
+				"urls": [ "stun:stun.example.com:3478" ], # One or more STUN servers.
+			},
+			{
+				"urls": [ "turn:turn.example.com:3478" ], # One or more TURN servers.
+				"username": "a_username", # Optional username for the TURN server.
+				"credential": "a_password", # Optional password for the TURN server.
+			}
+		]
+	}
+	Servers I found online https://dev.to/alakkadshaw/google-stun-server-list-21n4
+	stun1.l.google.com:19302
+	stun1.voiceeclipse.net:3478
+	stun2.l.google.com:19302
+	stun3.l.google.com:19302
+	stun4.l.google.com:19302
+	"""
+	peer.initialize({
+		"iceServers": [
+			{
+				"urls": [
+					"stun1.l.google.com:19302", 
+					"stun2.l.google.com:19302", 
+					"stun3.l.google.com:19302", 
+					"stun4.l.google.com:19302", 
+				],
+			}
+		]
+	})
 
 	# must be identical for both peers
 	chatChannel = peer.create_data_channel("chat", {"id": 1, "negotiated": true})
