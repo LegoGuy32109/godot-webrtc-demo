@@ -101,6 +101,7 @@ placeholder_text = "<no offer/answer created yet>"
 editable = false
 deselect_on_focus_loss_enabled = false
 wrap_mode = 1
+scroll_smooth = true
 
 [node name="sdpOffer" type="TextEdit" parent="."]
 unique_name_in_owner = true
@@ -111,6 +112,7 @@ offset_bottom = 328.0
 placeholder_text = "<place offer here>"
 deselect_on_focus_loss_enabled = false
 wrap_mode = 1
+scroll_smooth = true
 
 [node name="sdpAnswer" type="TextEdit" parent="."]
 unique_name_in_owner = true
@@ -121,6 +123,7 @@ offset_bottom = 595.0
 placeholder_text = "<place answer here>"
 deselect_on_focus_loss_enabled = false
 wrap_mode = 1
+scroll_smooth = true
 
 [node name="ChatMessage" type="TextEdit" parent="."]
 unique_name_in_owner = true
