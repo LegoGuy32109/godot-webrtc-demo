@@ -7,15 +7,6 @@
 [node name="PeerTester" type="Node2D"]
 script = ExtResource("1_agm6k")
 
-[node name="sendMessage" type="Button" parent="."]
-offset_left = 405.0
-offset_top = 108.0
-offset_right = 477.0
-offset_bottom = 140.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-text = "Send"
-
 [node name="peerCreateOffer" type="Button" parent="."]
 offset_left = 157.0
 offset_top = 165.0
@@ -131,14 +122,6 @@ deselect_on_focus_loss_enabled = false
 wrap_mode = 1
 scroll_smooth = true
 
-[node name="ChatMessage" type="LineEdit" parent="."]
-unique_name_in_owner = true
-offset_left = 155.0
-offset_top = 107.0
-offset_right = 393.0
-offset_bottom = 140.0
-placeholder_text = "Chat to Peer"
-
 [node name="CopyToClip" type="Button" parent="."]
 offset_left = 379.0
 offset_top = 388.0
@@ -186,28 +169,46 @@ theme_override_constants/margin_bottom = 6
 layout_mode = 2
 text = "+"
 
-[node name="Chat" type="PanelContainer" parent="."]
-offset_left = 824.0
-offset_top = 18.0
-offset_right = 1133.0
-offset_bottom = 619.0
-size_flags_horizontal = 6
-size_flags_vertical = 6
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 828.0
+offset_top = 1.0
+offset_right = 1145.0
+offset_bottom = 630.0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Chat"]
+[node name="Chat" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Chat"]
 layout_mode = 2
 follow_focus = true
 script = ExtResource("2_aisij")
 
-[node name="Chat" type="VBoxContainer" parent="Chat/ScrollContainer"]
+[node name="Chat" type="VBoxContainer" parent="VBoxContainer/Chat/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[connection signal="pressed" from="sendMessage" to="." method="sendMessage"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+metadata/_edit_group_ = true
+
+[node name="ChatMessage" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Chat to Peer"
+
+[node name="sendMessage" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Send"
+
 [connection signal="pressed" from="peerCreateOffer" to="." method="createOffer"]
 [connection signal="pressed" from="peerReadOffer" to="." method="readOffer"]
 [connection signal="pressed" from="peerReadAnswer" to="." method="readAnswer"]
 [connection signal="pressed" from="peerNew" to="." method="createPeer"]
 [connection signal="pressed" from="closePeer" to="." method="closePeer"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/sendMessage" to="." method="sendMessage"]
