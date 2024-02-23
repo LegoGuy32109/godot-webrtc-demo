@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="WebRTC Test"
-run/main_scene="res://CoolScene.tscn"
+run/main_scene="res://PeerScene.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
